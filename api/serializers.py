@@ -6,7 +6,7 @@ from .models import Creature
 class CreatureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Creature
-        fields = ['name','origion','decreption','wig','price','image']
+        fields = ['id','name','origin','description','wig','price','image']
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
