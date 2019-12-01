@@ -1,6 +1,11 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from api.models import Creature
+from .models import Creature
+
+class CreatureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Creature
+        fields = ['id','name','origin','description','wig','price','image']
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -16,7 +21,3 @@ class UserCreateSerializer(serializers.ModelSerializer):
         new_user.save()
         return validated_data
 
-class DetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Creature
-        fields = ['name', 'origin', 'description', 'price', 'image',]
