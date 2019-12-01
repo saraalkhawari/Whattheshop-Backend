@@ -10,4 +10,4 @@ class Creature(models.Model):
 	image = models.ImageField(upload_to='creature_logos', null=True, blank=True)
 
 	def get_absolute_url(self):
-		return reverse('creature-detail', kwargs={'classroom_id':self.id})
+		return reverse('creature-detail', kwargs={'creature_id':self.id})
