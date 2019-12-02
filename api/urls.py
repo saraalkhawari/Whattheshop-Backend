@@ -1,5 +1,9 @@
 from django.urls import path
+
+#pick one way to import views?
+from .views import UserCreateAPIView, DetailView
 from api import views
+
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 
