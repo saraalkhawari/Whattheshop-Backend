@@ -8,7 +8,7 @@ class Creature(models.Model):
 	description = models.CharField(max_length=100) 
 	wig = models.CharField(max_length=100) # color of wig
 	price = models.DecimalField(max_digits=10, decimal_places=3) # in $
-	image = models.ImageField(upload_to='creature_logos', null=True, blank=True)
+	image = models.ImageField(upload_to='media', null=True, blank=True)
 
 	def get_absolute_url(self):
 		return reverse('creature-detail', kwargs={'creature_id':self.id})
