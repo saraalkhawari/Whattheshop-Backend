@@ -1,11 +1,26 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Creature
+from .models import Creature, Cart, CartItem
 
 class CreatureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Creature
         fields = ['id','name','origin','description','wig','price','image']
+
+class CartItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Creature
+        fields = ['id','creature','quantity']
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Creature
+        fields = ['cartItem','date']
+
+class AddToCartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = ['creature']
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
