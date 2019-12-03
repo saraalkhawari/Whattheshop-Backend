@@ -9,13 +9,14 @@ class CreatureSerializer(serializers.ModelSerializer):
 
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Creature
+        model = CartItem
         fields = ['id','creature','quantity']
 
 class CartSerializer(serializers.ModelSerializer):
+    cart_items = CartItemSerializer(many=True)
     class Meta:
-        model = Creature
-        fields = ['cartItem','date']
+        model = Cart
+        fields = ['cart_items','date']
 
 class AddToCartSerializer(serializers.ModelSerializer):
     class Meta:
