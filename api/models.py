@@ -16,3 +16,14 @@ class Creature(models.Model):
 	def __str__(self):
 		return " #%d %s-%s wig"%(self.id,self.name,self.wig)
 
+
+class Cart(models.Model):
+	date = models.DateField(auto_now_add=True, )
+	user = models.ForeignKey(User, on_delete=models.CASCADE,  related_name="cart")
+
+class CartItem(models.Model):
+	cart= models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="cart_items")
+	creature = models.ForeignKey(Creature, on_delete=models.CASCADE, related_name="cart_items")
+	quantity = models.PositiveIntegerField()
+
+
