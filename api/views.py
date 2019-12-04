@@ -17,5 +17,5 @@ class UserCreateAPIView(CreateAPIView):
 class AddToCart(CreateAPIView):
 	serializer_class = AddToCartSerializer
 
-	# def perform_create(self, serializer):
-	# 	serializer.save(user=self.request.user, flight_id=self.kwargs['flight_id'])
+	def perform_create(self, serializer):
+		serializer.save(user=self.request.user)

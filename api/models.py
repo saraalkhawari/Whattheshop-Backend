@@ -18,7 +18,7 @@ class Creature(models.Model):
 
 
 class Cart(models.Model):
-	date = models.DateField()
+	date = models.DateField(auto_now_add=True, )
 	user = models.ForeignKey(User, on_delete=models.CASCADE,  related_name="cart")
 
 class CartItem(models.Model):

@@ -10,18 +10,30 @@ class CreatureSerializer(serializers.ModelSerializer):
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
-        fields = ['id','creature','quantity']
+        fields = ['creature','quantity']
 
 class CartSerializer(serializers.ModelSerializer):
     cart_items = CartItemSerializer(many=True)
+    # date= serializers.DateField(format="%d-%m-%Y")
     class Meta:
         model = Cart
         fields = ['cart_items','date']
 
 class AddToCartSerializer(serializers.ModelSerializer):
+    cart_items = CartItemSerializer(many = True)
+
     class Meta:
         model = Cart
-        fields = ['creature']
+        fields = ['cart_items']
+
+    def create(self, validated_data):
+        cart_items_data = validated_data.pop('cart_items')
+        cart = Cart.objects.create(**validated_data)
+        for cart_items_data in cart_items_data:
+            CartItem.objects.create(cart=cart, **cart_items_data)
+        return cart
+
+
 
 class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)

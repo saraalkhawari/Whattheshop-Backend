@@ -11,4 +11,6 @@ urlpatterns = [
 	path('carts/', views.CartList.as_view(), name="cart_list"),
     path('login/', TokenObtainPairView.as_view() , name='login'),
     path('register/', views.UserCreateAPIView.as_view(), name='register'),
+    path('add/', views.AddToCart.as_view(), name="add"),
+
 ]
