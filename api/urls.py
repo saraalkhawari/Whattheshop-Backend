@@ -8,9 +8,11 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 urlpatterns = [
 	path('', views.CreaturesList.as_view(), name="list"),
-	path('carts/', views.CartList.as_view(), name="cart_list"),
+	path('history/', views.OrderHistoryList.as_view(), name="history"),
     path('login/', TokenObtainPairView.as_view() , name='login'),
     path('register/', views.UserCreateAPIView.as_view(), name='register'),
-    path('add/', views.AddToCart.as_view(), name="add"),
+    path('checkout/', views.CheckoutView.as_view(), name="checkout"),
 
 ]
+
+

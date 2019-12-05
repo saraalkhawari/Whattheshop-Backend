@@ -20,6 +20,7 @@ class Creature(models.Model):
 class Cart(models.Model):
 	date = models.DateField(auto_now_add=True, )
 	user = models.ForeignKey(User, on_delete=models.CASCADE,  related_name="cart")
+	creatures = models.ManyToManyField(Creature, through='CartItem')
 
 class CartItem(models.Model):
 	cart= models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="cart_items")
