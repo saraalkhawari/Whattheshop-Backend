@@ -14,10 +14,9 @@ class CartItemSerializer(serializers.ModelSerializer):
 
 class CartSerializer(serializers.ModelSerializer):
     cart_items = CartItemSerializer(many=True)
-    # date= serializers.DateField(format="%d-%m-%Y")
     class Meta:
         model = Cart
-        fields = ['cart_items','date']
+        fields = ['user','cart_items','date']
 
 class AddToCartSerializer(serializers.ModelSerializer):
     cart_items = CartItemSerializer(many = True)
@@ -29,10 +28,9 @@ class AddToCartSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         cart_items_data = validated_data.pop('cart_items')
         cart = Cart.objects.create(**validated_data)
-        for cart_items_data in cart_items_data:
-            CartItem.objects.create(cart=cart, **cart_items_data)
+        for data in cart_items_data:
+            CartItem.objects.create(cart=cart, **data)
         return cart
-
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
