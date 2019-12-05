@@ -12,13 +12,13 @@ class CartItemSerializer(serializers.ModelSerializer):
         model = CartItem
         fields = ['creature','quantity']
 
-class CartSerializer(serializers.ModelSerializer):
+class OrderHistorySerializer(serializers.ModelSerializer):
     cart_items = CartItemSerializer(many=True)
     class Meta:
         model = Cart
         fields = ['user','cart_items','date']
 
-class AddToCartSerializer(serializers.ModelSerializer):
+class CheckoutSerializer(serializers.ModelSerializer):
     cart_items = CartItemSerializer(many = True)
 
     class Meta:
