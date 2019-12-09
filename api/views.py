@@ -1,12 +1,17 @@
 from rest_framework.permissions import AllowAny,IsAuthenticated
-from .serializers import CreatureSerializer, UserCreateSerializer,OrderHistorySerializer, CheckoutSerializer
+from .serializers import CreatureSerializer, UserCreateSerializer,OrderHistorySerializer, CheckoutSerializer, WigSerializer 
 from .models import Creature, Cart , CartItem
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView
 from .permissions import IsCartUser
 
+
+class WigList(ListAPIView):
+	queryset = Creature.objects.all()
+	serializer_class = WigSerializer 
+
 class CreaturesList(ListAPIView):
 	queryset = Creature.objects.all()
-	serializer_class = CreatureSerializer
+	serializer_class = CreatureSerializer 
 
 class OrderHistoryList(ListAPIView):
 	serializer_class = OrderHistorySerializer
