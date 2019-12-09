@@ -12,6 +12,8 @@ urlpatterns = [
     path('login/', TokenObtainPairView.as_view() , name='login'),
     path('register/', views.UserCreateAPIView.as_view(), name='register'),
     path('checkout/', views.CheckoutView.as_view(), name="checkout"),
+    path('wigs/', views.WigList.as_view(), name="wig"),
+    path('creaturewigs/', views.CreatureWigList.as_view(), name="creaturewig"),
 
 ]
 
