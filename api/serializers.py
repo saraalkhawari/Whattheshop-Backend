@@ -1,16 +1,21 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Creature, Cart, CartItem, Wig
+from .models import Creature, Cart, CartItem, Wig, CreatureWig
 
 class CreatureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Creature
-        fields = ['id','name','origin','description','wig','price','image']
+        fields = ['id','name','origin','description','price','image']
 
 class WigSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wig
         fields = ['id','color','image']
+
+class CreatureWigSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CreatureWig
+        fields = ['id','wig','creature','image']
 
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
