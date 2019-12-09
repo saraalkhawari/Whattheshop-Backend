@@ -13,7 +13,7 @@ class Creature(models.Model):
 	name = models.CharField(max_length=100) # name of the product
 	origin = models.CharField(max_length=100) # origin for catagorizing
 	description = models.CharField(max_length=100) 
-	wig = models.ForeignKey(Wig, on_delete=models.CASCADE) # color of wig
+	wig = models.ForeignKey(Wig, on_delete=models.CASCADE, null=True, blank=True) # color of wig
 	price = models.DecimalField(max_digits=10, decimal_places=3) # in $
 	image = models.ImageField(upload_to='media', null=True, blank=True)
 
@@ -24,10 +24,10 @@ class Creature(models.Model):
 		return " #%d %s-%s wig"%(self.id,self.name,self.wig)
 
 
-class Wigs(models.Model): 
-	color= models.CharField(max_length=100)
-	creature = models.ForeignKey(Creature, on_delete=models.CASCADE, related_name='wigs')
-	image = models.ImageField(upload_to='media',null=True,blank=True)
+# class Wigs(models.Model): 
+# 	color= models.CharField(max_length=100)
+# 	creature = models.ForeignKey(Creature, on_delete=models.CASCADE, related_name='wigs')
+# 	image = models.ImageField(upload_to='media',null=True,blank=True)
 
 
 class Cart(models.Model):
