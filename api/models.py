@@ -2,11 +2,18 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+
+class Wig(models.Model): 
+	color= models.CharField(max_length=100)
+	image = models.ImageField(upload_to='media',null=True,blank=True)
+
+# let color and image VALUE become same as color name
+
 class Creature(models.Model):
 	name = models.CharField(max_length=100) # name of the product
 	origin = models.CharField(max_length=100) # origin for catagorizing
 	description = models.CharField(max_length=100) 
-	wig = models.CharField(max_length=100) # color of wig
+	wig = models.ForeignKey(Wig, on_delete=models.CASCADE) # color of wig
 	price = models.DecimalField(max_digits=10, decimal_places=3) # in $
 	image = models.ImageField(upload_to='media', null=True, blank=True)
 
@@ -16,10 +23,12 @@ class Creature(models.Model):
 	def __str__(self):
 		return " #%d %s-%s wig"%(self.id,self.name,self.wig)
 
+
 class Wigs(models.Model): 
 	color= models.CharField(max_length=100)
 	creature = models.ForeignKey(Creature, on_delete=models.CASCADE, related_name='wigs')
 	image = models.ImageField(upload_to='media',null=True,blank=True)
+
 
 class Cart(models.Model):
 	date = models.DateField(auto_now_add=True, )
