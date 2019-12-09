@@ -24,6 +24,12 @@ class Creature(models.Model):
 		return " #%d %s-%s wig"%(self.id,self.name,self.wig)
 
 
+class Wigs(models.Model): 
+	color= models.CharField(max_length=100)
+	creature = models.ForeignKey(Creature, on_delete=models.CASCADE, related_name='wigs')
+	image = models.ImageField(upload_to='media',null=True,blank=True)
+
+
 class Cart(models.Model):
 	date = models.DateField(auto_now_add=True, )
 	user = models.ForeignKey(User, on_delete=models.CASCADE,  related_name="cart")
