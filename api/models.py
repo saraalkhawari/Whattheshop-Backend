@@ -16,10 +16,10 @@ class Creature(models.Model):
 	def __str__(self):
 		return " #%d %s-%s wig"%(self.id,self.name,self.wig)
 
-class Wiggs(models.Model): 
-	color= models.CharFeild(max_length=100)
-	creature = models.ForeignKey(Creature, on_delete=models.CASCADE, related_name='wiggs')
-	image = models.ImageField(upload_to'media',null=True,blank=True)
+# class Wiggs(models.Model): 
+# 	color= models.CharFeild(max_length=100)
+# 	creature = models.ForeignKey(Creature, on_delete=models.CASCADE, related_name='wiggs')
+# 	image = models.ImageField(upload_to'media',null=True,blank=True)
 
 class Cart(models.Model):
 	date = models.DateField(auto_now_add=True, )
